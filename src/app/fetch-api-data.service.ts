@@ -42,7 +42,6 @@ export class UserRegistrationService {
     );
   }
 
-
    // Request specific movie by id
   getOneMovie(): Observable<any> {
     const token = localStorage.getItem('token');
@@ -162,7 +161,7 @@ deleteUser(): Observable<any> {
 
 
 // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: any): any {
     const body = res;
     return body || { };
   }
