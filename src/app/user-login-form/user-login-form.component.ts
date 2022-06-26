@@ -13,36 +13,39 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 The decorator contains instructions for wiring up the class with its stylesheet and template file */
 @Component({
   //selector property defines the custom HTML element, into which this component will render
-  selector: 'app-user-registration-form',
-  templateUrl: './user-registration-form.component.html',
-  styleUrls: ['./user-registration-form.component.scss']
+  selector: 'app-user-login-form',
+  templateUrl: './user-login-form.component.html',
+  styleUrls: ['./user-login-form.component.scss']
 })
-export class UserRegistrationFormComponent implements OnInit {
+export class UserLoginFormComponent implements OnInit {
 
-//decorator that defines the component’s input:
-@Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userCredentials = { Username: '', Password: ''};
 
 constructor(
     public fetchApiData: FetchApiDataService,
-    public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
+    public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar) { }
 
-//method is called once the component has received all its inputs from the calling component:
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
-registerUser(): void {
-    this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
-  // Logic for a successful user registration goes here!
-     this.dialogRef.close(); // This will close the modal on success!
+// function for sending the form inputs to the backend to log in user
+loginUser(): void {
+    this.fetchApiData.userLogin(this.userCredentials).subscribe((result) => {
+  // Logic for a successful user registration goes here! 
+   
      console.log(result);
-     this.snackBar.open("You are registered.", 'OK', {
-      duration: 5000,
-      verticalPosition: 'top'
-     });
+          // Add token and username to local Storage
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('user', result.user.Username);
+      this.dialogRef.close(); // This will close the modal on success!
+      this.snackBar.open("You are logged in.", 'OK', {
+        duration: 5000,
+        verticalPosition: 'top'
+      });
+  
+    
     }, (result) => {
-      console.log(result);
       this.snackBar.open(result, 'OK', {
         duration: 5000,
         verticalPosition: 'top'
@@ -50,4 +53,6 @@ registerUser(): void {
     });
   }
 
-  }
+  
+
+}
