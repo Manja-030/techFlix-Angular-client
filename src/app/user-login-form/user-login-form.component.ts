@@ -9,6 +9,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+// For navigating through the application:
+import { Router } from '@angular/router';
+
 /*decorator to tell Angular that the class right below is a component. 
 The decorator contains instructions for wiring up the class with its stylesheet and template file */
 @Component({
@@ -24,7 +27,9 @@ export class UserLoginFormComponent implements OnInit {
 constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private router: Router) { }
+    
 
 ngOnInit(): void {
 }
@@ -43,7 +48,7 @@ loginUser(): void {
         duration: 5000,
         verticalPosition: 'top'
       });
-  
+      this.router.navigate(['movies']);
     
     }, (result) => {
       this.snackBar.open(result, 'OK', {
