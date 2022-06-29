@@ -1,1 +1,10 @@
-<p>navbar works!</p>
+<mat-toolbar style="background-color: black; color: white;">
+  <button class="nav-logo">
+    <span (click)="homeClick()" >TechFlix</span>
+  </button>
+    <div>
+      <button mat-button  style="font-size: medium;" (click)="toProfileClick()">Profile</button>
+      <button mat-button  style="font-size: medium;" (click)="logOut()">Logout</button>
+  
+</div>
+</mat-toolbar>

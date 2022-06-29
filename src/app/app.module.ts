@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
@@ -28,14 +29,12 @@ import { GenreCardComponent } from './genre-card/genre-card.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
- // {path: "director", component: DirectorsComponent},
-  //{path: "genre", component: GenreComponent},
-  //{path: "description", component: DescriptionComponent}
-  //Path Add to Favorite comes here
+  {path: "profile", component: ProfilePageComponent},
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -50,7 +49,8 @@ const appRoutes: Routes = [
     GenreCardComponent,
     DirectorCardComponent,
     SynopsisCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,8 +64,10 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatToolbarModule,
     MatIconModule,
     FormsModule
+    
 
   ],
   providers: [],
