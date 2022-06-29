@@ -125,7 +125,7 @@ addFavMovie(id:string): Observable<any> {
 removeFavMovie(id:string): Observable<any> {
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('user');
-  return this.http.delete(apiUrl + `users/${username}/movies/movies/${id}`, {headers: new HttpHeaders(
+  return this.http.delete(apiUrl + `users/${username}/movies/${id}`, {headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(
