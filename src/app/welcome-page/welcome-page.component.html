@@ -1,11 +1,14 @@
-<div class="main-page">
-  <h1>
-    Welcome to techFlix!
-  </h1>
-  <button
+<div class="welcome-page">
+  <mat-card>
+    <mat-card-header style="color: white; font-size: large;" >
+      Welcome to techFlix!
+    </mat-card-header>
+ 
+    <mat-card-actions>
+    <button
     mat-raised-button
     (click)="openUserRegistrationDialog()"
-    style="margin-right: 10px;"
+  
     color="primary"
   >
     Sign Up
@@ -14,8 +17,10 @@
     mat-raised-button
     color="primary"
     (click)="openUserLoginDialog()"
-    style="margin-right: 10px;"
+    
   >
     Login
   </button>
+</mat-card-actions>
+</mat-card>
 </div>

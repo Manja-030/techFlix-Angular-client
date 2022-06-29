@@ -1,0 +1,33 @@
+
+.welcome-page {
+ 
+  margin: 0;
+  padding: 5%;
+  display: flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: pink;
+
+  //flex-direction: row;
+  //flex-wrap: wrap;
+}
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //position: relative;
+  background-color: grey;
+  width: 400px;
+  //margin: 15px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+
+.mat-card-header {
+  height: 30px;
+  flex-direction: column;
+}
+

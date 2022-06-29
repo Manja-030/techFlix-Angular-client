@@ -1,0 +1,42 @@
+
+.movie-page {
+  margin: 10%;
+  padding-top: 80px;
+  display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+}
+
+.mat-card{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+img {
+  width: 250px;
+  height: 350px;
+  object-fit: contain;
+  margin-top: auto;
+}
+
+.action-wrapper{
+  margin-top: auto;
+}
+
+.detail-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+.add-fav{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  align-items: bottom;
+  
+}
