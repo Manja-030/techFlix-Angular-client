@@ -104,11 +104,13 @@ getUser(): Observable<any> {
   );
 }
 
-// Get favourite movies for a user
-getFavMovies(): Observable<any> {
+
+
+// Add a movie to favourite Movies
+addFavMovie(id:string): Observable<any> {
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('user');
-  return this.http.get(apiUrl + `users/${username}/movies`, {headers: new HttpHeaders(
+  return this.http.post(apiUrl + `users/${username}/movies/${id}`, null,{headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(
@@ -117,25 +119,13 @@ getFavMovies(): Observable<any> {
   );
 }
 
-// Add a movie to favourite Movies
-addFavMovie(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const username = localStorage.getItem('user');
-  return this.http.post(apiUrl + `/users/${username}/movies/:MovieID`, {headers: new HttpHeaders(
-    {
-      Authorization: 'Bearer ' + token,
-    })}).pipe(
-    map(this.extractResponseData),
-    catchError(this.handleError)
-  );
-}
 
 // Remove movie form favorite movies
 
-removeFavMovie(): Observable<any> {
+removeFavMovie(id:string): Observable<any> {
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('user');
-  return this.http.delete(apiUrl + `/users/${username}/movies/:MovieID`, {headers: new HttpHeaders(
+  return this.http.delete(apiUrl + `users/${username}/movies/movies/${id}`, {headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(

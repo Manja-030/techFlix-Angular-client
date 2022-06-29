@@ -14,10 +14,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class MovieCardComponent implements OnInit {
 
   movies: any[] = [];
+  favClicked: Boolean = false;
+  favs: string[] = [];
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public snackbar: MatSnackBar) { }
 
 ngOnInit(): void {
   this.getMovies();
+  this.getFavs();
 }
 
 getMovies(): void {
@@ -41,6 +44,53 @@ getMovies(): void {
        });
       }
     
-     
+  /**
+   * fetches list of favorites
+   * @returns array of ids of favorited movies
+   */
+   getFavs(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+       this.favs = resp.FavMovies
+       return this.favs
+       
+    })
+    console.log(this.favs);
+  }
+
+  /**
+   * evaluates if a movie is inside the favorites list
+   * @param id 
+   * @returns boolean
+   */
+  isFav(id: string): Boolean {
+    return this.favs.includes(id) ? true : false
+  }
+
+  /**
+   * addes or removies movies from favorites in database and app
+   * @param id 
+   * @returns updated list of favorites
+   */
+  toggleFav(id: string): void {
+    if (this.isFav(id)) {
+      console.log("trying to remove...")
+      this.fetchApiData.removeFavMovie(id).subscribe((resp: any) => {
+        this.snackbar.open('Removed from favorites!', 'OK', {
+          duration: 2000,
+        });
+        return this.favs.splice(this.favs.indexOf(id), 1)
+      })
+    } else if (!this.isFav(id)) {
+      console.log("trying to add...")
+
+      this.fetchApiData.addFavMovie(id).subscribe((resp: any) => {
+        console.log(id);
+        this.snackbar.open('Added to favorites!', 'OK', {
+          duration: 2000,
+        });
+        return this.favs.push(id);
+      })
+    }
+  } 
   
 }

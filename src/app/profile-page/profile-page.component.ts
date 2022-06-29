@@ -56,7 +56,7 @@ export class ProfilePageComponent implements OnInit {
           Password: '',
           Birthday: this.formatBirthday(resp.Birthday)
         }
-        //this.favIds = resp.FavMovies;
+        this.favIds = resp.FavMovies;
         return this.userInfo;
         
       });
