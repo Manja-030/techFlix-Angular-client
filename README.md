@@ -1,27 +1,86 @@
-# TechFlixAngularClient
+# techFlix Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
+--- screen shot goes here ---
 
-## Development server
+This is the client side application for this [API](https://github.com/Manja-030/movie-app). It showcases several movies. The user can create, update and delete their account, and get information about each movie and add movies to a list of favorites.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Key Features
 
-## Code scaffolding
+### Welcome View
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+User can login or register
 
-## Build
+### Movie View
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Displays all movies. For each movie the user can by clicking the corresponding button get a synopsis, info about the director and movie genre. The user can also add the movie to their list of favorites or remove it.
 
-## Running unit tests
+### Profile View
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+User can edit their profile and displays the favorite movies.
 
-## Running end-to-end tests
+Returns a list of ALL movies to the user (each listed item with an image, title, and description).
+User can select a movie for more details.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Tools
 
-## Further help
+- [Angular] (https://angular.io/)
+- [Angular Material](https://material.angular.io/) UI Component Library
+- [TypeDoc](https://typedoc.org/) for creating documentation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+If you are interested - there is [another version](https://github.com/Manja-030/techFlix-client) of the techFlix frontend that I built with React and Redux.
+
+## Getting Started
+
+### Install Angular
+
+Check if Angular is already installed on device.
+```bash
+ng --version
+```
+
+If not, install Angular
+```bash
+npm install -g @angular/cli
+```
+
+### Create a new Angular Project
+
+Navigate to folder and create project
+```bash
+ng new my-project-name
+```
+
+Navigate to project folder to run project
+```bash
+ng serve --open
+```
+The application will open in the browser and automatically reload if you change any of the source files.
+
+### Set up App to load Data from the Movie API
+Go to file app.module.ts
+  ```bash
+  import { HttpClientModule } from '@angular/common/http';
+  ```
+Add HttpClientModule to the imports of @NgModule
+Go to app folder
+```bash
+  ng generate service fetch-api-data
+  ```
+Add import statements to fetch-api-data.service.ts file
+  ```bash
+  import { catchError } from 'rxjs/internal/operators';
+  import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+  import { Observable, throwError } from 'rxjs';
+  import { map } from 'rxjs/operators';
+  ```
+Implement servic logic to make API calls. For endpoints refer to [this documentation].
+
+### Add Angular Material to the Project
+
+### Create Components
+
+### Add Routing
+
+### Add TypeDoc Documentation
+
+### Deploy your App
