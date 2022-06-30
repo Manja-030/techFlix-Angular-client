@@ -92,7 +92,7 @@ Import the modules you want to use for your project to the file app.module.ts
 Add modules to imports array to serve to other components.
 
 ### Create Components
-``bash
+```bash
 ng generate component my-component-name
 ```
 ### Add Routing
