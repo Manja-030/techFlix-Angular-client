@@ -101,7 +101,7 @@ Import Angular's built-in router:
 ```bash
 import { RouterModule, Routes } from '@angular/router';
 ```
-Add to app.component.html
+Add this to app.component.html:
 ```bash
 <router-outlet></router-outlet> 
 ```
