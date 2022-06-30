@@ -1,4 +1,5 @@
-<mat-card>
+<div>
+<mat-card *ngFor="let genre of genres;" style="flex: 1 1 auto;">
   <mat-card-title>Genre</mat-card-title>
   
   <mat-card-content>
@@ -8,3 +9,5 @@
       <a mat-flat-button mat-dialog-close color="accent">Close</a>
   </mat-card-actions>
 </mat-card>
+</div>
+

@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
 
-// This import brings in the API calls we created in 6.2
+// This import brings in the API calls
 import { FetchApiDataService } from '../fetch-api-data.service';
 
 // This import is used to display notifications back to the user
@@ -34,7 +34,11 @@ constructor(
 ngOnInit(): void {
 }
 
-// function for sending the form inputs to the backend to log in user
+
+/**
+ * Sends the form inputs to the back end to log in user
+ * @function loginUser
+ */
 loginUser(): void {
     this.fetchApiData.userLogin(this.userCredentials.Username, this.userCredentials.Password).subscribe((result) => {
   

@@ -23,7 +23,8 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   /**
-   * removies logged in user from user database and routes to welcome page
+   * Remove user from database and route to welcome page.
+   * @function deleteProfile
    */
   deleteProfile(): void {
     this.fetchApiData.deleteUser().subscribe((resp) => {

@@ -17,7 +17,14 @@ export class NavbarComponent implements OnInit {
   }
 
   /**
-   * routes to profile page
+  * routes to movies page
+  */
+  homeClick(): void {
+    this.router.navigate(['movies'])
+  }
+
+  /**
+   * routes to user profile page
    */
   toProfileClick(): void {
     this.router.navigate(['profile']);
@@ -34,10 +41,5 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['welcome'])
   }
 
-  /**
-   * routes to movies page
-   */
-  homeClick(): void {
-    this.router.navigate(['movies'])
-  }
+ 
 }
