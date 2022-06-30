@@ -1,6 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-//import { MovieCardComponent } from './movie-card/movie-card.component';
-//import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
