@@ -26,17 +26,6 @@ User can view the favorite movies list.
   * Edit profile dialog
   * View list of favorite movies
 
-### Movie View
-
-Displays all movies. For each movie the user can by clicking the corresponding button get a synopsis, info about the director and movie genre. The user can also add the movie to their list of favorites or remove it.
-
-### Profile View
-
-User can edit their profile and displays the favorite movies.
-
-Returns a list of ALL movies to the user (each listed item with an image, title, and description).
-User can select a movie for more details.
-
 ## Tools
 
 - [Angular] (https://angular.io/)
