@@ -21,6 +21,7 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies();
     this.getFavs();
+    this.getMovieGenres();
   }
   /**
   * fetches all movies from API and sets movies state 
@@ -36,13 +37,14 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * fetches list of favorites
-   * @returns array of ids of favorited movies
+   * fetches list of moviegenres
+   * @function getMovieGenres
+   * @returns array of ids of moviegenres
    */
-   getFavs(): void {
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-       this.favs = resp.FavoriteMovies
-       return this.favs
+   getMovieGenres(): void {
+    this.fetchApiData.getOneMovie().subscribe((resp: any) => {
+       this.movieGenreIds = resp.Genre
+       return this.movieGenreIds
     })
   }
 
