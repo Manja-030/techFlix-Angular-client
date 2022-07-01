@@ -34,6 +34,29 @@ export class MovieCardComponent implements OnInit {
       return this.movies;
     });
   }
+
+  /**
+   * fetches list of favorites
+   * @returns array of ids of favorited movies
+   */
+   getFavs(): void {
+    this.fetchApiData.getUser().subscribe((resp: any) => {
+       this.favs = resp.FavoriteMovies
+       return this.favs
+    })
+  }
+
+  /**
+   * evaluates if a movie is inside the favorites list
+   * @param id 
+   * @returns boolean
+   */
+  isFav(id: string): Boolean {
+    return this.favs.includes(id) ? true : false
+  }
+
+
+
   /**
   * opens modal to view synopsis info
   * @function getSynopsis
@@ -60,7 +83,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-  * opens modal to view director info
+  * opens modal to view genre info
   * @function getGenre
   */
    getGenre(genreName: string, genreDescription: string,): void {
