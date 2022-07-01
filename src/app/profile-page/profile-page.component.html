@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
   <div class="profile-page" style="display: flex;">
-   <mat-card>
+   <mat-card class="profile-form">
      <mat-card-title>You can edit your user profile</mat-card-title>
      <mat-card-content>
     <mat-form-field appearance="outline">
@@ -15,14 +15,6 @@
         <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Email">
         <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
-
-    <mat-form-field appearance="outline">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="userInfo.Password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-      </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Birthday</mat-label>
@@ -50,5 +42,17 @@
 </mat-card-actions>
 
 </mat-card>
+
+<hr>
+<h1>Favorite Movies</h1>
+
+  <mat-card xFlex="20%" *ngFor="let movie of favList; let i=index;">
+    <mat-card-title>{{movie.Title}}
+    </mat-card-title>
+    <mat-card-subtitle>Directed by: {{movie.Director.Name}}, {{movie.Year}}, {{movie.Genre.Name}}</mat-card-subtitle>
+    <img mat-card-image class="card-img"  src={{movie.ImagePath}}/>
+  </mat-card>
+
+
 
 </div>
