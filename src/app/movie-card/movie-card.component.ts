@@ -18,56 +18,84 @@ export class MovieCardComponent implements OnInit {
   favs: string[] = [];
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public snackbar: MatSnackBar) { }
 
-ngOnInit(): void {
-  this.getMovies();
-  this.getFavs();
-}
-
-getMovies(): void {
-  this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+  ngOnInit(): void {
+    this.getMovies();
+    this.getFavs();
+  }
+  /**
+  * fetches all movies from API and sets movies state 
+  * @function getMovies
+  * @returns array of movie objects
+  */
+  getMovies(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       console.log(this.movies);
       return this.movies;
     });
   }
-
+  /**
+  * opens modal to view synopsis info
+  * @function getSynopsis
+  * @param movieDescription synopsis text
+  */
   getSynopsis(movieDescription: string): void {
     this.dialog.open(SynopsisCardComponent, {
       width: "500px", 
       data: {movieDescription}
-     });
-    }
-    getDirector(directorName: string, directorBio: string, directorBirth: string): void {
-      this.dialog.open(DirectorCardComponent, {
-        data: { directorName, directorBio, directorBirth},
-        width: '500px',
-       });
-      }
+    });
+  }
+  /**
+  * opens modal to view director info
+  * @function getDirector
+  * @param directorName director name
+  * @param directorBio director biography
+  * @param directorBirth director birthday
+  */
+  getDirector(directorName: string, directorBio: string, directorBirth: string): void {
+    this.dialog.open(DirectorCardComponent, {
+      data: { directorName, directorBio, directorBirth},
+      width: '500px',
+    });
+  }
+
+  /**
+  * opens modal to view director info
+  * @function getGenre
+  */
+   getGenre(genreName: string, genreDescription: string,): void {
+    this.dialog.open(GenreCardComponent, {
+      width: '500px',
+    });
+  }
     
   /**
-   * fetches list of favorites
-   * @returns array of ids of favorited movies
-   */
-   getFavs(): void {
+  * fetches list of favorites and sets favs state
+  * @function getFavs
+  * @returns array of ids of favorited movies
+  */
+  getFavs(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
-       this.favs = resp.FavMovies
-       return this.favs
+    this.favs = resp.FavMovies
+    return this.favs
        
     })
     console.log(this.favs);
   }
 
   /**
-   * evaluates if a movie is inside the favorites list
+   * evaluates if a movie is on the favorites list
+   * @function isFav
    * @param id 
-   * @returns boolean
+   * @returns boolean 
    */
   isFav(id: string): Boolean {
     return this.favs.includes(id) ? true : false
   }
 
   /**
-   * addes or removies movies from favorites in database and app
+   * adds or removes movies from favorites in database and app
+   * @function toggleFav
    * @param id 
    * @returns updated list of favorites
    */

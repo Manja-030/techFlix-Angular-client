@@ -21,7 +21,7 @@ export class ProfilePageComponent implements OnInit {
    
     Username: "", 
     Email: "", 
-    Password: '', 
+    //Password: '', 
     Birthday: ""
   };
 
@@ -34,26 +34,34 @@ export class ProfilePageComponent implements OnInit {
  
   ngOnInit(): void {
     this.getUserData();
-    //this.getFavorites();
+    this.getFavorites();
     console.log(this.userInfo);
   }
 
-
+/**
+   * formats birthday data so it can be processed by date form
+   * @function formatBirthday
+   * @param birthday date string
+   * @returns formatted date string
+   */
   formatBirthday(birthday: string): string {
     this.userInfo.Birthday = new Date(birthday).toISOString().split('T')[0]
     return this.userInfo.Birthday 
   }
 
-  // calls API endpoint to get user info
  
- 
+ /**
+   * fetches user profile data and favs, sets user 
+   * @function getUserData
+   * @returns user JSON data
+   */
   getUserData(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
         this.userInfo = {
         
           Username: resp.Username,
           Email: resp.Email,
-          Password: '',
+          //Password: '',
           Birthday: this.formatBirthday(resp.Birthday)
         }
         this.favIds = resp.FavMovies;
@@ -63,9 +71,10 @@ export class ProfilePageComponent implements OnInit {
     }
   
 
-      /**
-   * opens modal to delete user account
-   */
+  /**
+  * opens modal to delete user account
+  * @function openDeleteDialog
+  */
        openDeleteDialog(): void {
         console.log(this.userInfo);
         this.dialog.open(DeleteDialogComponent, {
@@ -74,9 +83,10 @@ export class ProfilePageComponent implements OnInit {
       }
   
 /**
-    * turns movie ids from favorite list into array of movie objetcs
-   * returns function that pushes movies to favorite list
-     
+* turns movie ids from favorite list into array of movie objetcs
+* @function getFavorites
+* @returns function that pushes movies to favorite list
+*/     
  getFavorites(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
     const movies = resp;
@@ -85,10 +95,11 @@ export class ProfilePageComponent implements OnInit {
   });
   })
   console.log("Favoriten-Array:" + this.favList)
-}*/ 
+}
 
 /**
    * sends updated user data to API
+   * @function saveChanges
    * @returns object of updated user data
    */
  saveChanges(): void {
@@ -98,7 +109,7 @@ export class ProfilePageComponent implements OnInit {
       
       Username: resp.Username,
       Email: resp.Email,
-      Password: '',
+      //Password: '',
       Birthday: this.formatBirthday(resp.Birthday)
     };
     console.log("response save changes: " + resp )

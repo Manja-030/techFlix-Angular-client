@@ -129,7 +129,7 @@ getGenre(): Observable<any> {
 }
 
 /**
- * Make API call to fetch data of the logged in user
+ * Makes API call to fetch data of the logged in user
  * @function getUser
  * @returns user JSON object or error message
  */

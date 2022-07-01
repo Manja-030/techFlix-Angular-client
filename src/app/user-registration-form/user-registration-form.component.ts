@@ -33,6 +33,7 @@ ngOnInit(): void {
 
 /**
  * Sends the values of the form inputs to the back end to register user
+ * @function registerUser
  */
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
