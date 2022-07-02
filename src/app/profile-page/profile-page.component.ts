@@ -13,7 +13,7 @@ import {User} from "../types/User";
 })
 export class ProfilePageComponent implements OnInit {
 
-  hide= true;
+  //hide= true;
   favIds: string[] = [];
   favList: any[] = [];
 
@@ -106,25 +106,20 @@ export class ProfilePageComponent implements OnInit {
  saveChanges(): void {
   console.log(this.userInfo);
   this.fetchApiData.updateUser(this.userInfo).subscribe((resp: User) => {
+    //localStorage.setItem('username', resp.Username)
     this.userInfo = {
-      
       Username: resp.Username,
       Email: resp.Email,
       //Password: '',
       Birthday: this.formatBirthday(resp.Birthday)
     };
-    console.log("response save changes: " + resp )
     this.snackBar.open("Changes saved", 'OK', {
       duration: 5000
    });
-   console.log("response save changes: " + resp )
     return this.userInfo
+    
   })
 }
-
-
-
-
 
  
 }
