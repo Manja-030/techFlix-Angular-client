@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+//import { map } from 'rxjs/operators';
 import { User } from "./types/User";
 
 
@@ -17,7 +17,9 @@ export class FetchApiDataService {
  // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
   }
- 
+
+/* -- USER CALLS -- */  
+
  /**
   * Makes API call to the user registration endpoint
   * @function userRegistration
@@ -44,96 +46,13 @@ export class FetchApiDataService {
     catchError(this.handleError)
     );
   }
-
-  /**
-   * Makes API call to fetch all movies in database
-   * @function getAllMovies
-   * @returns array of movie JSON objects or error message
-   */
-  getAllMovies(): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-      
-      catchError(this.handleError)
-    );
-  }
-  
-    /**
-     * Makes API call to fetch all genres in database
-     * @function getAllGenres
-     * @returns array of genre JSON objets or error message
-     */
-    getAllGenres(): Observable<any> {
-      const token = localStorage.getItem('token');
-      return this.http.get(apiUrl + 'genres', {headers: new HttpHeaders(
-        {
-          Authorization: 'Bearer ' + token,
-        })}).pipe(
-        
-        
-        catchError(this.handleError)
-      );
-
-    }
-   /**
-    * Makes API call to fetch a specific movie by its id
-    * @function getOneMovie
-    * @returns movie JSON object or error message
-    */
-  getOneMovie(): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/:id', {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-      
-      catchError(this.handleError)
-    );
-  }
-
-  /**
-   * Makes API call to fetch the director of a movie by their name
-   * @function getDirector
-   * @param directorName
-   * @returns director JSON object or error message
-   */
-  getDirector(directorName: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(`${apiUrl}directors/${directorName}`, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-      
-      catchError(this.handleError)
-    );
-  }
-
-/**
- * Make API call to fetch genres of a movie
- * @function getGenre
- * @returns array of genre ids or error message
- */
-getGenre(): Observable<any> {
-  const token = localStorage.getItem('token');
-  return this.http.get(apiUrl + 'movies/:id/genre', {headers: new HttpHeaders(
-    {
-      Authorization: 'Bearer ' + token,
-    })}).pipe(
-    
-    catchError(this.handleError)
-  );
-}
-
 /**
  * Makes API call to fetch data of the logged in user
  * @function getUser
  * @returns user JSON object or error message
  */
 
-getUser(): Observable<any> {
+ getUser(): Observable<any> {
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
   return this.http.get(apiUrl + `users/${user}`, {headers: new HttpHeaders(
@@ -142,14 +61,13 @@ getUser(): Observable<any> {
     }),}).pipe(catchError(this.handleError)
   );
 }
-
 /**
  * Make API call to add movie to favorites list
  * @function addFavMovie
  * @param id 
  * @returns updated array of the favorite movie's array or error message
  */
-addFavMovie(id:string): Observable<any> {
+ addFavMovie(id:string): Observable<any> {
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('user');
   return this.http.post(apiUrl + `users/${username}/movies/${id}`, null,{headers: new HttpHeaders(
@@ -185,7 +103,8 @@ removeFavMovie(id:string): Observable<any> {
  * @function updateUser
  * @param userDetails 
  * @returns updated user JSON object or error message
- */
+(username: string, userData: object) 
+*/
 updateUser(userDetails: User): Observable<any> {
   
   const token = localStorage.getItem('token');
@@ -213,6 +132,91 @@ deleteUser(): Observable<any> {
     catchError(this.handleError)
   );
 }
+
+/* -- MOVIE CALLS -- */
+
+  /**
+   * Makes API call to fetch all movies in database
+   * @function getAllMovies
+   * @returns array of movie JSON objects or error message
+   */
+  getAllMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      
+      catchError(this.handleError)
+    );
+  }
+
+ /**
+  * Makes API call to fetch a specific movie by its id
+  * @function getOneMovie
+  * @returns movie JSON object or error message
+  */
+  getOneMovie(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'movies/:id', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+        
+      catchError(this.handleError)
+    );
+  } 
+
+/**
+  * Makes API call to fetch the director of a movie by their name
+  * @function getDirector
+  * @param directorName
+  * @returns director JSON object or error message
+  */
+  getDirector(directorName: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(`${apiUrl}directors/${directorName}`, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+      
+      catchError(this.handleError)
+    );
+  }
+
+/**
+ * Make API call to fetch genres of a movie
+ * @function getGenre
+ * @returns array of genre ids or error message
+ */
+getGenre(): Observable<any> {
+  const token = localStorage.getItem('token');
+  return this.http.get(apiUrl + 'movies/:id/genre', {headers: new HttpHeaders(
+    {
+      Authorization: 'Bearer ' + token,
+    })}).pipe(
+    
+    catchError(this.handleError)
+  );
+}
+
+/* -- GENRE CALLS -- */
+  
+  /**
+  * Makes API call to fetch all genres in database
+  * @function getAllGenres
+  * @returns array of genre JSON objets or error message
+  */
+  getAllGenres(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http.get(apiUrl + 'genres', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })}).pipe(
+        catchError(this.handleError)
+      );
+  }
+ 
 
 /**
  * Logs error message.
