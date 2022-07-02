@@ -10,11 +10,10 @@
       <mat-card-actions>
           <div class="detail-buttons">
           <button
-        
-              
               mat-button
-                color="primary"
-                class="details-button"
+              color="primary"
+              class="details-button"
+              (click)="openGenreModal(movie.Genre)"
                
           >
               Genre
@@ -22,14 +21,14 @@
           <button
               mat-button
               class="detail-buttons"
-              (click)="getDirector(movie.Director.Name, movie.Director.Bio, movie.Director.Birth)" 
+              (click)="openDirectorModal(movie.Director.Name, movie.Director.Bio, movie.Director.Birth)" 
           >
               Director
           </button>
           <button
               mat-button
               class="details-button"
-              (click)="getSynopsis(movie.Description)"
+              (click)="openSynopsisModal(movie.Description)"
           >
               Synopsis
           </button>

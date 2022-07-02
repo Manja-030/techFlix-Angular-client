@@ -78,7 +78,6 @@ export class FetchApiDataService {
       );
 
     }
-
    /**
     * Makes API call to fetch a specific movie by its id
     * @function getOneMovie

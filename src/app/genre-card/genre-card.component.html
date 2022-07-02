@@ -1,11 +1,14 @@
 <div>
 <mat-card style="flex: 1 1 auto;">
-  <mat-card-title>Genre</mat-card-title>
+  <mat-card-content *ngFor="let genre of filteredGenreObjects;">
+    <mat-card-title>{{genre.Name}}</mat-card-title>
+  <!--<mat-card-title>{{data.genreName}}</mat-card-title>-->
   
-  <mat-card-content>
-     Description of Genre
-  </mat-card-content>
-  <mat-card-actions>
+     <mat-card-content>
+      {{genre.Description}}
+     </mat-card-content>
+    </mat-card-content>
+     <mat-card-actions>
       <a mat-flat-button mat-dialog-close color="accent">Close</a>
   </mat-card-actions>
 </mat-card>

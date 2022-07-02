@@ -16,12 +16,12 @@ export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   favClicked: Boolean = false;
   favs: string[] = [];
+ 
   constructor(public fetchApiData: FetchApiDataService, public dialog: MatDialog, public snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMovies();
     this.getFavs();
-    this.getMovieGenres();
   }
   /**
   * fetches all movies from API and sets movies state 
@@ -36,35 +36,29 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  /**
-   * fetches list of moviegenres
-   * @function getMovieGenres
-   * @returns array of ids of moviegenres
-   */
-   getMovieGenres(): void {
-    this.fetchApiData.getOneMovie().subscribe((resp: any) => {
-       this.movieGenreIds = resp.Genre
-       return this.movieGenreIds
-    })
-  }
+  /* GENRE-MODAL - This is what I want to do:
+  1. Get genre of my movie -> returns array of ids
+  But to display the genre I need the corresponding object that holds all the data!
+  2. Get all genres -> returns array of genre objects with these keys
+    - id
+    - Name
+    - Description
+  3. Create an empty list: filteredGenreObjects
+  4. for each genre object
+    - check: is id included in id-array of movie?  
+    - if yes: push the genre object to the new array filteredGenreObjects
+  5. Tell my genre-card component what genres to display
 
-  /**
-   * evaluates if a movie is inside the favorites list
-   * @param id 
-   * @returns boolean
-   */
-  isFav(id: string): Boolean {
-    return this.favs.includes(id) ? true : false
-  }
-
+/*
+*/
 
 
   /**
   * opens modal to view synopsis info
-  * @function getSynopsis
+  * @function openSynopsisModal
   * @param movieDescription synopsis text
   */
-  getSynopsis(movieDescription: string): void {
+  openSynopsisModal(movieDescription: string): void {
     this.dialog.open(SynopsisCardComponent, {
       width: "500px", 
       data: {movieDescription}
@@ -72,12 +66,12 @@ export class MovieCardComponent implements OnInit {
   }
   /**
   * opens modal to view director info
-  * @function getDirector
+  * @function openDirectorModal
   * @param directorName director name
   * @param directorBio director biography
   * @param directorBirth director birthday
   */
-  getDirector(directorName: string, directorBio: string, directorBirth: string): void {
+  openDirectorModal(directorName: string, directorBio: string, directorBirth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: { directorName, directorBio, directorBirth},
       width: '500px',
@@ -86,12 +80,14 @@ export class MovieCardComponent implements OnInit {
 
   /**
   * opens modal to view genre info
-  * @function getGenre
+  * @function openGenreModal
   */
-   getGenre(genreName: string, genreDescription: string,): void {
+   openGenreModal(movieGenre: any): void {
     this.dialog.open(GenreCardComponent, {
       width: '500px',
+      data: {movieGenre}
     });
+    console.log("movieGenre: " + movieGenre)
   }
     
   /**
