@@ -36,6 +36,7 @@ export class ProfilePageComponent implements OnInit {
     this.getUserData();
     this.getFavorites();
     console.log(this.userInfo);
+    console.log(this.favIds)
   }
 
 /**
@@ -49,7 +50,6 @@ export class ProfilePageComponent implements OnInit {
     return this.userInfo.Birthday 
   }
 
- 
  /**
    * fetches user profile data and favs, sets user 
    * @function getUserData
@@ -66,6 +66,7 @@ export class ProfilePageComponent implements OnInit {
         }
         this.favIds = resp.FavMovies;
         return this.userInfo;
+       
         
       });
     }
