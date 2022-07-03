@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+  <div class="profile-page">
+
+  <!-- Edit User Profile -->
+   <mat-card class="profile-form">
+     <mat-card-title>You can edit your user profile</mat-card-title>
+     <mat-card-content>
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Username">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="userInfo.Email">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Birthday</mat-label>
+        <input matInput placeholder="Placeholder" type="string" [(ngModel)]="userInfo.Birthday">
+    </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+    <button
+    mat-raised-button
+    color="primary"
+    style="margin-right: 10px;"
+    (click)="saveChanges()"
+  >
+    Save Changes
+  </button>
+
+  <button
+    mat-raised-button
+    color="warn"
+    style="margin-right: 10px;"
+    (click)="openDeleteDialog()"
+  >
+    Delete Profile
+  </button>
+</mat-card-actions>
+
+</mat-card>
+
+<hr>
+<!-- Display Favorite Movies -->
+<span class="favorites-header"><h1>Your Favorite Movies</h1></span>
+<div class="favorites-container">
+
+  <mat-card class="favorites" *ngFor="let movie of favList; let i=index;">
+    <mat-card-title>{{movie.Title}}
+    </mat-card-title>
+    <mat-card-subtitle>Directed by {{movie.Director.Name}}</mat-card-subtitle>
+    <img mat-card-image class="card-img"  src={{movie.ImagePath}}/>
+  </mat-card>
+
+</div>
+</div>
