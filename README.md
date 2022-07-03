@@ -1,6 +1,6 @@
 # techFlix Application
 
---- screen shot goes here ---
+<img width="1393" alt="Bildschirmfoto 2022-07-03 um 04 15 50" src="https://user-images.githubusercontent.com/80778632/177021862-d598a788-089b-44eb-a465-192e16e4a20f.png">
 
 This is the client side application for this [API](https://github.com/Manja-030/movie-app). It showcases several movies. The user can create, update and delete their account, and get information about each movie and add movies to a list of favorites.
 
