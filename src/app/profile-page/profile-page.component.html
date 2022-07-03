@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-  <div class="profile-page" style="display: flex;">
+  <div class="profile-page">
 
   <!-- Edit User Profile -->
    <mat-card class="profile-form">
@@ -47,16 +47,15 @@
 
 <hr>
 <!-- Display Favorite Movies -->
+<span class="favorites-header"><h1>Your Favorite Movies</h1></span>
+<div class="favorites-container">
 
-<h1>Favorite Movies</h1>
-<div class="favorites-list">
-  <mat-card xFlex="20%" *ngFor="let movie of favList; let i=index;">
+  <mat-card class="favorites" *ngFor="let movie of favList; let i=index;">
     <mat-card-title>{{movie.Title}}
     </mat-card-title>
     <mat-card-subtitle>Directed by {{movie.Director.Name}}</mat-card-subtitle>
     <img mat-card-image class="card-img"  src={{movie.ImagePath}}/>
   </mat-card>
+
 </div>
-
-
 </div>
