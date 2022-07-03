@@ -27,7 +27,6 @@ export class FetchApiDataService {
   * @returns new user JSON object or error message
   */
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
     catchError(this.handleError)
     );
@@ -106,7 +105,6 @@ removeFavMovie(id:string): Observable<any> {
 (username: string, userData: object) 
 */
 updateUser(userDetails: User): Observable<any> {
-  
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('user');
   return this.http.put(`${apiUrl}users/${username}`, userDetails,  {headers: new HttpHeaders(
@@ -114,6 +112,7 @@ updateUser(userDetails: User): Observable<any> {
       Authorization: 'Bearer ' + token,
     })}).pipe(catchError(this.handleError)
   );
+  
 }
 
 /**
