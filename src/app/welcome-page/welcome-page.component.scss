@@ -1,18 +1,18 @@
 
 .welcome-page {
- 
+  background-color: pink;
+  background-image: url("../../assets/welcome_background_img.png");
+
+}
+
+.welcome-content{
   margin: 0;
   padding: 5%;
   display: flex;
   //flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: pink;
-  background-image: url("../../assets/welcome_background_img.png");
 
-
-  //flex-direction: row;
-  //flex-wrap: wrap;
 }
 
 .mat-card {
